@@ -6,17 +6,18 @@ using namespace std;
 
 void fisher_yates_shuffle(int* array, int length)
 {
-    int k, temp;
-    for (int i=length-1; i>=0; i--) {
-        k = rand() % i;
+    int k, temp, last;
+    for (int i=0; i<length; i++) {
+        last = length-i;
+        k = rand() % (last); 
         cout << "k: " << k << endl;
         temp = array[k];
-        array[k] = array[i];
-        array[i] = temp;
+        array[k] = array[last-1];
+        array[last-1] = temp;
     }
 }
 
-int* generator(int n)
+int generator(int n)
 {
     int * array = new int[10];
     for (int i=0; i<n; i++) {
@@ -26,22 +27,11 @@ int* generator(int n)
         array[j] = -1;
     }
 
+    int count = 0;
     do {
+        count++;
         fisher_yates_shuffle(array, 2*n);
     } while (non_negative_sum(array, 2*n) || non_positive_sum(array, 2*n));
 
-    return array;
-}
-
-int main() 
-{
-    int * array;
-    array = generator(5);
-
-    for (int i=0; i<10; i++){
-        cout << array[i] << endl;
-    }
-    
-    delete[] array;
-    return 0;
+    return count;
 }
