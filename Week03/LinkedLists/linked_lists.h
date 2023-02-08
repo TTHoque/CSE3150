@@ -8,7 +8,7 @@ struct node {
 
 struct node * build_linked_list(int elements);
 void print_linked_list(struct node * list, int elements);
-int delete_linked_list(struct node * list, int elements);
+void delete_linked_list(struct node * list, int elements);
 int sum_values_in_linked_list(struct node * list, int elements);
 
 #endif
