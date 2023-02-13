@@ -19,7 +19,7 @@ bool non_negative_sum(int array[], int length)
 
     // return false if any prefix sum is negative
     for(int i=0; i<length; i++) {
-        if ((prefix_sum(array, i+1)) <= 0) return false;
+        if ((prefix_sum(array, i+1)) < 0) return false;
     }
 
     return true;
@@ -31,7 +31,7 @@ bool non_positive_sum(int array[], int length)
     
     // return false if any prefix sum is positive
     for(int i=0; i<length; i++) {
-        if ((prefix_sum(array, i+1)) >= 0) return false;
+        if ((prefix_sum(array, i+1)) > 0) return false;
     }
 
     return true;
