@@ -1,7 +1,8 @@
 #ifndef __BALANCED_LISTS_H
 #define __BALANCED_LISTS_H
 
-int lowest_depth(int array[], int length);
-int* new_balanced_list(int array[], int length);
+void print_array(int array[], const int length);
+int lowest_depth_index(int array[], const int length);
+int* new_balanced_list(int array[], const int length);
 
 #endif
