@@ -1,13 +1,12 @@
 #ifndef __STACK_H
 #define __STACK_H
 
-#include <stack>
 
+#include <stack>
+#include <string>
 using namespace std;
 
 stack<int> get_stack(const int n);
-stack<int> push_element(const stack<int> stack, int v);
-stack<int> pop_element(const stack<int> stack);
-stack<int> read_file()
+stack<int> stack_from_file(string file);
 
-#endif __STACK_H
+#endif
