@@ -18,9 +18,10 @@ stack<int> int_stack_from_file(string file)
 {   
     ifstream input {file};
     stack<int> stack;
-    string buffer;
-    int x;
+
     if (input) {
+        string buffer;
+        int x;
         while (!input.eof()) {
             input >> buffer;
             try
@@ -86,14 +87,56 @@ stack<struct node> get_node_stack(const int n)
 
 stack<struct node> node_stack_from_file(string file)
 {
+    ifstream input {file};
+    stack<struct node> stack;
 
+    if (input) {
+        string buffer;
+        int x;
+        struct node * cur = new node;
+        struct node * last = cur; 
+        int count = 0;
+
+        while (!input.eof()) {
+            input >> buffer;
+            try
+            {   
+                x = stoi(buffer);
+                cur->value = x;
+                cur->prev = last;
+                cur->next = new node;
+                last = cur;
+                stack.push(*last);
+                cur = cur->next;
+                count++;
+
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << "buffer doesn't hold integer: " << buffer << " " << '\n';
+            }   
+        }
+
+    if (count == 0) delete cur;
+    else {
+        cur = last;
+        cur->next = cur;
+    }
+
+    }
+    return stack;
 }
 
 int pop_and_print_nodes(stack<struct node> stack) 
 {
     int sum = 0;
-    struct node * cur = stack.top().next;
     cout << "printing stack of nodes: ";
+    if (stack.empty()) {
+        cout << endl;
+        return sum;
+    }
+
+    struct node * cur = stack.top().next;
     cout << stack.top().value << " ";
     delete cur;
     stack.pop();
@@ -103,6 +146,7 @@ int pop_and_print_nodes(stack<struct node> stack)
         cur = stack.top().next;
         delete cur;
     }
+    cout << stack.top().value << " ";
     cout << endl;
     cur = stack.top().prev;
     delete cur;

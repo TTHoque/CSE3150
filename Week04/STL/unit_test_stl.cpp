@@ -53,6 +53,10 @@ TEST_CASE("Testing stl containers")
         cout << "stack7----------------------------" << endl;
         stack<struct node> stack7 = node_stack_from_file("bad input");
         pop_and_print_nodes(stack7);
+
+        cout << "stack8----------------------------" << endl;
+        stack<struct node> stack8 = node_stack_from_file("stack3.txt");
+        pop_and_print_nodes(stack8);
         
     }
 
