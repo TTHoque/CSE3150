@@ -7,4 +7,6 @@ struct node {
     int value;
 };
 
+struct node * double_linked_list(const int n);
+
 #endif
