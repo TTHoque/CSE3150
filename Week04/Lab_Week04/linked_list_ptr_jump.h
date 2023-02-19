@@ -8,19 +8,16 @@ struct node {
 };
 
 struct node * linked_list_init(const int n);
-struct node * ptr_jump(struct node * root, const int n);
+struct node * ptr_jump_algorithm(struct node * root, const int n);
 
-enum {
-    NUMBER = 10
-};
-
-struct node * pointer_jum_linked_list(struct node * klist, const int elements);
 int printLL(struct node * list, const int elements);
 int deleteLL(struct node * list, const int elements);
 
 int sum_values_in_LL(struct node * list, const int elements);
 struct node * array_ptrs_to_each_element_in_LL(struct node * list, const int elements);
 
-int print_jumper_next_node(struct node * array_ptrs, const in elements);
+int advance_jumpers_by_1(struct node * array_ptrs, const int elements);
+int print_jumpers_array(struct node * array_ptrs, const int elements);
+int print_jumpers_LL(struct node * root, const int n);
 
 #endif
