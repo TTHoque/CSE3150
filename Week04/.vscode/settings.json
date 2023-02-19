@@ -1,6 +1,5 @@
 {
     "files.associations": {
-        "random": "cpp",
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
@@ -36,6 +35,7 @@
         "memory": "cpp",
         "memory_resource": "cpp",
         "numeric": "cpp",
+        "random": "cpp",
         "ratio": "cpp",
         "string_view": "cpp",
         "system_error": "cpp",
