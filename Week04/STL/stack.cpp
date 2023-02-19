@@ -119,8 +119,8 @@ stack<struct node> node_stack_from_file(string file)
 
     if (count == 0) delete cur;
     else {
+        last->next = last;
         cur = last;
-        cur->next = cur;
     }
 
     }
@@ -138,6 +138,7 @@ int pop_and_print_nodes(stack<struct node> stack)
 
     struct node * cur = stack.top().next;
     cout << stack.top().value << " ";
+    if (cur->next != cur) cur->next;
     delete cur;
     stack.pop();
     while (stack.size()>1) {
