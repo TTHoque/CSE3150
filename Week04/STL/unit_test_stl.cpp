@@ -58,6 +58,11 @@ TEST_CASE("Testing stl containers")
         stack<struct node> stack8 = node_stack_from_file("stack3.txt");
         pop_and_print_nodes(stack8);
         
+        cout << "stack9----------------------------" << endl;
+        stack<struct node> stack9 = node_stack_from_file("negative_stack.txt");
+        
+        cout << "stack10---------------------------" << endl;
+        stack<int> stack10 = int_stack_from_file("negative_stack.txt");
     }
 
     SUBCASE("Testing queue implementation")

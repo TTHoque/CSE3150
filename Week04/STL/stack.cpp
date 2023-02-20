@@ -18,6 +18,7 @@ stack<int> int_stack_from_file(string file)
 {   
     ifstream input {file};
     stack<int> stack;
+    int sum = 0;
 
     if (input) {
         string buffer;
@@ -27,14 +28,26 @@ stack<int> int_stack_from_file(string file)
             try
             {
                 x = stoi(buffer);
+                sum += x;
                 stack.push(x);
             }
-            catch(const std::exception& e)
+            catch(const exception& e)
             {
-                std::cerr << "buffer doesn't hold integer: " << buffer << " " << '\n';
+                cerr << "buffer doesn't hold integer: " << buffer << " " << '\n';
             }   
         }
     }
+    try
+    {
+        if (sum < 0) 
+            throw exception();
+    }
+    catch(const exception& e)
+    {
+        cerr << e.what() << '\n' << "sum of stack elements is negative\n"
+             << pop_and_print_stack(stack) << endl;
+    }
+
     return stack;
 }
 
@@ -49,28 +62,6 @@ int pop_and_print_stack(stack<int> stack)
     }
     cout << endl;
     return sum;
-}
-
-struct node * double_linked_list(const int n)
-{   
-    if (n<=0) return NULL;
-    struct node * start = new node;
-    struct node * last = start;
-    struct node * cur = start;
-    int i;
-    for (i=0; i<n-1; i++) {
-        cur->value = i;
-        cur->prev = last;
-        cur->next = new node;
-        last = cur;
-        cur = cur->next;
-    }
-    cur->value = i;
-    last = cur;
-    cur->next = cur;
-    cur->prev = last;
-
-    return start;
 }
 
 stack<struct node> get_node_stack(const int n)
@@ -89,6 +80,7 @@ stack<struct node> node_stack_from_file(string file)
 {
     ifstream input {file};
     stack<struct node> stack;
+    int sum = 0;
 
     if (input) {
         string buffer;
@@ -102,6 +94,7 @@ stack<struct node> node_stack_from_file(string file)
             try
             {   
                 x = stoi(buffer);
+                sum += x;
                 cur->value = x;
                 cur->prev = last;
                 cur->next = new node;
@@ -111,19 +104,29 @@ stack<struct node> node_stack_from_file(string file)
                 count++;
 
             }
-            catch(const std::exception& e)
+            catch(const exception& e)
             {
-                std::cerr << "buffer doesn't hold integer: " << buffer << " " << '\n';
+                cerr << "buffer doesn't hold integer: " << buffer << " " << '\n';
             }   
         }
-
-    if (count == 0) delete cur;
-    else {
-        last->next = last;
-        cur = last;
+        if (count == 0) delete cur;
+        else {
+            delete cur;
+            last->next = last;
+        }
     }
-
+    
+    try
+    {
+        if (sum < 0) 
+            throw exception();
     }
+    catch(const exception& e)
+    {
+        cerr << e.what() << '\n' << "sum of stack elements is negative:\n"
+             << pop_and_print_nodes(stack) << endl;
+    }
+    
     return stack;
 }
 
@@ -136,20 +139,25 @@ int pop_and_print_nodes(stack<struct node> stack)
         return sum;
     }
 
-    struct node * cur = stack.top().next;
+    int size = stack.size();
     cout << stack.top().value << " ";
-    if (cur->next != cur) cur->next;
-    delete cur;
+    
     stack.pop();
     while (stack.size()>1) {
         cout << stack.top().value << " ";
-        stack.pop();
-        cur = stack.top().next;
-        delete cur;
+        stack.pop();    
     }
+
     cout << stack.top().value << " ";
     cout << endl;
-    cur = stack.top().prev;
-    delete cur;
+
+    struct node * cur = stack.top().prev;
+    struct node * last = cur;
+    for (int i=0; i<size; i++) {
+        cur = cur->next; 
+        delete last;
+        last = cur;
+    }
+
     return sum;
 }
