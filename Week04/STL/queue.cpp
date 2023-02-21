@@ -44,8 +44,10 @@ queue<int> int_queue_from_file(string file)
     }
     catch(const exception& e)
     {
-        cerr << e.what() << '\n' << "sum of queue elements is negative\n"
-             << pop_and_print_queue(queue) << endl;
+        cerr << e.what() << '\n' << "sum of queue elements is negative\n";
+                        
+        std::queue<int> empty;
+        return empty;
     }
 
     return queue;
@@ -56,8 +58,8 @@ int pop_and_print_queue(queue<int> queue)
     int sum = 0;
     cout << "printing queue: ";
     while (!queue.empty()) {
-        sum += queue.top();
-        cout << queue.top() << " ";
+        sum += queue.front();
+        cout << queue.front() << " ";
         queue.pop();
     }
     cout << endl;
@@ -123,8 +125,13 @@ queue<struct node> node_queue_from_file(string file)
     }
     catch(const exception& e)
     {
-        cerr << e.what() << '\n' << "sum of queue elements is negative:\n"
-             << pop_and_print_nodes(queue) << endl;
+        cerr << e.what() << '\n' << "sum of queue elements is negative:\n";
+        
+        std::cout.setstate(std::ios_base::failbit);
+        pop_and_print_nodes(queue);
+        std::cout.clear();
+        std::queue<node> empty;
+        return empty;
     }
     
     return queue;
@@ -140,24 +147,21 @@ int pop_and_print_nodes(queue<struct node> queue)
     }
 
     int size = queue.size();
-    cout << queue.top().value << " ";
+    struct node * cur = queue.front().prev;
+    cout << queue.front().value << " ";
     
     queue.pop();
-    while (queue.size()>1) {
-        cout << queue.top().value << " ";
+    while (!queue.empty()) {
+        cout << queue.front().value << " ";
         queue.pop();    
-    }
-
-    cout << queue.top().value << " ";
+    }   
     cout << endl;
 
-    struct node * cur = queue.top().prev;
     struct node * last = cur;
     for (int i=0; i<size; i++) {
         cur = cur->next; 
         delete last;
         last = cur;
     }
-
     return sum;
 }

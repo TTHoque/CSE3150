@@ -1,8 +1,12 @@
 #include "stl.h"
+#include <exception>
+#include <iostream>
+using namespace std;
 
 struct node * double_linked_list(const int n)
 {   
     if (n<=0) return NULL;
+    
     struct node * start = new node;
     struct node * last = start;
     struct node * cur = start;

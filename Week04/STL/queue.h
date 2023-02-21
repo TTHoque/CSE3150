@@ -12,7 +12,7 @@ queue<int> int_queue_from_file(string file);
 int pop_and_print_queue(queue<int>);
 
 queue<struct node> get_node_queue(const int n);
-queue<struct node> queue_stack_from_file(string file);
-int pop_and_print_nodes(queue<struct node> stack);
+queue<struct node> node_queue_from_file(string file);
+int pop_and_print_nodes(queue<struct node> queue);
 
 #endif
