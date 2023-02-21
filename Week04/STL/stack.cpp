@@ -18,6 +18,7 @@ stack<int> int_stack_from_file(string file)
 {   
     ifstream input {file};
     stack<int> stack;
+    
     int sum = 0;
 
     if (input) {
@@ -45,7 +46,7 @@ stack<int> int_stack_from_file(string file)
     catch(const exception& e)
     {
         cerr << e.what() << '\n' << "sum of stack elements is negative\n"
-             << pop_and_print_stack(stack) << endl;
+             << pop_and_print_stack(stack) << endl<< endl;
     }
 
     return stack;
@@ -124,7 +125,7 @@ stack<struct node> node_stack_from_file(string file)
     catch(const exception& e)
     {
         cerr << e.what() << '\n' << "sum of stack elements is negative:\n"
-             << pop_and_print_nodes(stack) << endl;
+             << pop_and_print_nodes(stack) << endl << endl;
     }
     
     return stack;

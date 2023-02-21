@@ -56,8 +56,8 @@ int pop_and_print_queue(queue<int> queue)
     int sum = 0;
     cout << "printing queue: ";
     while (!queue.empty()) {
-        sum += queue.top();
-        cout << queue.top() << " ";
+        sum += queue.front();
+        cout << queue.front() << " ";
         queue.pop();
     }
     cout << endl;
@@ -140,18 +140,18 @@ int pop_and_print_nodes(queue<struct node> queue)
     }
 
     int size = queue.size();
-    cout << queue.top().value << " ";
+    cout << queue.front().value << " ";
     
     queue.pop();
     while (queue.size()>1) {
-        cout << queue.top().value << " ";
+        cout << queue.front().value << " ";
         queue.pop();    
     }
 
-    cout << queue.top().value << " ";
+    cout << queue.front().value << " ";
     cout << endl;
 
-    struct node * cur = queue.top().prev;
+    struct node * cur = queue.front().prev;
     struct node * last = cur;
     for (int i=0; i<size; i++) {
         cur = cur->next; 
