@@ -18,7 +18,6 @@ stack<int> int_stack_from_file(string file)
 {   
     ifstream input {file};
     stack<int> stack;
-    
     int sum = 0;
 
     if (input) {
@@ -40,15 +39,19 @@ stack<int> int_stack_from_file(string file)
     }
     try
     {
-        if (sum < 0) 
+        if (sum < 0) {
             throw exception();
+        }
+            
     }
     catch(const exception& e)
     {
-        cerr << e.what() << '\n' << "sum of stack elements is negative\n"
-             << pop_and_print_stack(stack) << endl<< endl;
+        cerr << e.what() << '\n' << "sum of stack elements is negative\n";
+        
+        std::stack<int> empty;
+        return empty;
     }
-
+    
     return stack;
 }
 
@@ -119,13 +122,18 @@ stack<struct node> node_stack_from_file(string file)
     
     try
     {
-        if (sum < 0) 
+        if (sum < 0) {
             throw exception();
+        }
     }
     catch(const exception& e)
     {
-        cerr << e.what() << '\n' << "sum of stack elements is negative:\n"
-             << pop_and_print_nodes(stack) << endl << endl;
+        cerr << e.what() << '\n' << "sum of stack elements is negative:\n";
+        std::cout.setstate(std::ios_base::failbit);
+        pop_and_print_nodes(stack);
+        std::cout.clear();
+        std::stack<node> empty;
+        return empty;
     }
     
     return stack;
@@ -159,6 +167,7 @@ int pop_and_print_nodes(stack<struct node> stack)
         delete last;
         last = cur;
     }
+    stack.pop();
 
     return sum;
 }

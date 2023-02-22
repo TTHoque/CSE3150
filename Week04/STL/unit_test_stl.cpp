@@ -90,5 +90,22 @@ TEST_CASE("Testing stl containers")
         cout << "queue4---------------------------" << endl;
         queue<int> queue4 = int_queue_from_file("negative_elements.txt");
         pop_and_print_queue(queue4);
+
+        cout << "queue5---------------------------" << endl;
+        queue<node> queue5 = get_node_queue(6);
+        pop_and_print_nodes(queue5);
+
+        cout << "queue6---------------------------" << endl;
+        queue<node> queue6 = node_queue_from_file("nums1.txt");
+        pop_and_print_nodes(queue6);
+
+        cout << "queue7---------------------------" << endl;
+        queue<node> queue7 = node_queue_from_file("nums2.txt");
+        pop_and_print_nodes(queue7);
+
+        cout << "queue8---------------------------" << endl;
+        queue<node> queue8 = node_queue_from_file("negative_elements.txt");
+        pop_and_print_nodes(queue8);
+
     }
 }
