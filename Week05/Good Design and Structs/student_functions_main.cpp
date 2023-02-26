@@ -16,13 +16,16 @@ int main()
     }
     cout << endl;
 
+    output_student_struct_data(s);
+
     hw_average = sum / s.hw_grades.size();
     cout << "Average homework score: " << hw_average << endl;
 
     double final_total_score{0.0};
     
-    final_total_score = 0.3 * s.midterm + 0.3 * s.final + 0.4 * hw_average;
-
+    grading_schema g = {0.30, 0.30, 0.40};
+    final_total_score = compute_student_total_score(s, g);
+    
     cout << "Final total class score: " << final_total_score << endl;
     return 0;
 }
