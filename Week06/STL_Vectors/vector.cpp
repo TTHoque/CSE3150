@@ -30,8 +30,7 @@ vector<int_vector> get_int_vectors_from_file(string filename)
         sort(vect.begin(), 
             vect.end(), 
             [](const int_vector & left, const int_vector & right) 
-        
-        {return left.id > right.id;}
+            {return left.id > right.id;}
         );
     }
     catch(const std::exception& e)
