@@ -1,6 +1,10 @@
 #ifndef __VECTOR_H
 #define __VECTOR_H
 
+#include <vector>
+#include <string>
+using namespace std; 
+
 struct int_vector {
     int id; 
     int from;
@@ -9,7 +13,7 @@ struct int_vector {
     int_vector() : id(-1), from(0), to(0) {}; // basic constructor
 };
 
-struct int_vector create_int_vector(int from, int to);
-void print_elements_of_int_vector(const struct int_vector & i_v);
+void print_int_vector(const struct int_vector & i_v);
+vector<int_vector> get_int_vectors_from_file(string filename);
 
 #endif
