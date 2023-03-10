@@ -5,6 +5,6 @@
 using namespace std;
 
 bool perfect_number(const int& x);
-vector<int> perfects_numbers_in_range(const int& from, const int& to);
+vector<int> perfect_numbers_generator(const int& from, const int& to);
 
 #endif
